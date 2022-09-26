@@ -40,21 +40,26 @@ export default function App() {
     });
     return str;
   }
-  function createCO(n = 2) {
+
+  function cressateCO(n = 2) {
     let a = [];
     for (let i = n - 1; i >= -n + 1; i--) {
       for (let j = n - 1; j >= -n + 1; j--) {
-        if ((i === 0 && j === 0) || i !== j) {
-          a.push([i, j]);
-        } else {
+        if (i + j === n || i + j === -n) {
           continue;
+        } else if (i === n - 1 && j === n - 1) {
+          continue;
+        } else if (i === -n + 1 && j === -n + 1) {
+          continue;
+        } else {
+          a.push([i, j]);
         }
       }
     }
     return a;
   }
 
-  // const d = createCO(2);
+  console.log(cressateCO(4)?.length);
 
   return (
     <div>
