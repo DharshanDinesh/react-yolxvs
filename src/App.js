@@ -2,30 +2,33 @@ import React from 'react';
 import './style.css';
 
 export default function App() {
+  const size = 2;
+  const maxHeight = size + (size - 1);
+
   const hex = {
     1: {
-      x: 0,
-      y: 270,
+      x: 750,
+      y: 0,
     },
     2: {
-      x: 160,
-      y: 0,
+      x: 1000,
+      y: 500,
     },
     3: {
-      y: 0,
-      x: 485,
+      x: 750,
+      y: 1000,
     },
     4: {
-      y: 270,
-      x: 645,
+      x: 250,
+      y: 1000,
     },
     5: {
-      y: 560,
-      x: 480,
+      x: 0,
+      y: 500,
     },
     6: {
-      y: 560,
-      x: 160,
+      x: 250,
+      y: 0,
     },
   };
 
@@ -37,17 +40,33 @@ export default function App() {
     });
     return str;
   }
+  function createCO(n = 2) {
+    let a = [];
+    for (let i = n - 1; i >= -n + 1; i--) {
+      for (let j = n - 1; j >= -n + 1; j--) {
+        if ((i === 0 && j === 0) || i !== j) {
+          a.push([i, j]);
+        } else {
+          continue;
+        }
+      }
+    }
+    return a;
+  }
+
+  // const d = createCO(2);
 
   return (
     <div>
       <svg
         class="hexagon-mask"
-        viewBox="0 0 560 645"
+        viewBox="0 0 1000 1000"
         version="1.1"
         width="100%"
         height="100%"
+        style={{ border: '1px solid black' }}
       >
-        <Otha pt={daa(hex, 3)} />
+        <Otha pt={daa(hex)} />
       </svg>
     </div>
   );
