@@ -2,9 +2,6 @@ import React from 'react';
 import './style.css';
 
 export default function App() {
-  const size = 2;
-  const maxHeight = size + (size - 1);
-
   const hex = {
     1: {
       x: 750,
@@ -32,12 +29,12 @@ export default function App() {
     },
   };
 
-  function daa(a = hex, b = 1, c = 100) {
+  function daa(a = hex) {
     let str = [];
     const adsf = Object.values(a);
 
     adsf.forEach((data, index) => {
-      str = [...str, data.x / b, data.y / b];
+      str = [...str, data.x, data.y];
     });
     return str;
   }
@@ -68,6 +65,7 @@ export default function App() {
     }
     return a;
   }
+
   return (
     <div
       style={{
@@ -75,23 +73,16 @@ export default function App() {
         flexDirection: 'row',
         margin: '1%',
         alignItems: 'center',
+        justifyContent: 'center',
       }}
     >
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
-        {[...Array(2)].map((e, i) => (
-          <Otha pt={daa(hex)} />
-        ))}
-      </div>
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
-        {[...Array(3)].map((e, i) => (
-          <Otha pt={daa(hex)} />
-        ))}
-      </div>
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
-        {[...Array(2)].map((e, i) => (
-          <Otha pt={daa(hex)} />
-        ))}
-      </div>
+      {add(2).map((noItemPerCol) => (
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          {[...Array(noItemPerCol)].map((e, i) => (
+            <Otha pt={daa(hex)} />
+          ))}
+        </div>
+      ))}
     </div>
   );
 }
@@ -105,8 +96,12 @@ function Otha({ pt }) {
       height="100px"
       version="1.1"
       style={{ margin: '2%' }}
+      fill="red"
     >
-      <polygon points={pt}></polygon>
+      <polygon points={pt} stroke="black"></polygon>
+      <text x="500" y="600" text-anchor="middle" fill="black" font-size="400">
+        X
+      </text>
     </svg>
   );
 }
